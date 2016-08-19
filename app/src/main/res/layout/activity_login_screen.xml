@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="44dp"
+    android:background="@drawable/back_layer"
+    android:tileMode="repeat"
+    tools:context="edu.iit.arajago6hawk.searchlocal.LoginScreen">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Search Local"
+        android:textColor="#fff"
+        android:id="@+id/sl_textView"
+        android:textSize="45dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="italic"
+        android:text="The local shopping buck stops here!"
+        android:textColor="#fff"
+        android:layout_marginTop="3dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/sl_textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Powered by"
+        android:textColor="#fff"
+        android:layout_marginTop="120dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ownlocal_logo"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-35dp"
+        android:id="@+id/imageView2" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/login_button"
+        android:visibility="gone"
+        android:layout_alignStart="@+id/button2"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Skip Login"
+        android:id="@+id/button2"
+        android:background="@color/colorAccentYellow"
+        android:textColor="#000"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login with Facebook"
+        android:id="@+id/login_button"
+        android:layout_marginBottom="6dp"
+        android:background="@color/colorAccent"
+        android:textColor="#FFFFFF"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

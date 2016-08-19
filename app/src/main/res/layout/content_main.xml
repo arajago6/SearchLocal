@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingTop="6dp"
+    android:animateLayoutChanges="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="edu.iit.arajago6hawk.searchlocal.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+        android:id="@+id/imgSlider"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/salutation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello there..."
+        android:paddingTop="2dp"
+        android:paddingLeft="14dp"
+        android:textStyle="bold|italic"
+        android:textColor="#757575"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/entice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What are you looking for today?!"
+        android:paddingTop="1dp"
+        android:paddingLeft="14dp"
+        android:layout_below="@+id/salutation"
+        android:textColor="#424242"
+        android:textSize="12dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/topFrame"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/imgSlider">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal|top">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight=".75"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:layout_gravity="left|center_vertical"
+                android:hint="Search for business or category..."
+                android:ems="5"
+                android:textColorHint="#FFF"
+                android:textSize="15dp"
+                android:textColor="#FFF"
+                android:id="@+id/editText2"
+                android:theme="@style/Theme.App.Base" />
+            <Space
+                android:layout_width="0dp"
+                android:layout_weight=".03"
+                android:layout_height="wrap_content"/>
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_weight=".22"
+                android:layout_height="wrap_content"
+                android:text=" GO "
+                android:background="@drawable/accent_button"
+                android:textColor="#FFFFFF"
+                android:id="@+id/go_button"
+                android:layout_gravity="right|center_vertical"
+                android:padding="8dp" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_button"
+        android:layout_below="@+id/topFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:clickable="true"
+        android:onClick="takeToBusinessPage"
+        android:layout_margin="16dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/location"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="   VIEW NEARBY BUSINESSES   >"
+            android:padding="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/card_featured"
+        android:layout_below="@+id/card_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_margin="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/featured"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Featured this week "
+                android:gravity="center"
+                android:textStyle="italic"
+                android:background="@color/colorPrimary"
+                android:padding="15dp"
+                android:textColor="@color/colorAccentYellow"
+                android:textSize="18dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cardTopFrame"
+                android:gravity="center"
+                android:layout_below="@+id/featured" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/feat_lin1"
+                    android:padding="5dp"
+                    android:orientation="vertical" >
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/feat1"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/shop3"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        app:riv_corner_radius="6dip"
+                        app:riv_border_width="0dip"
+                        app:riv_border_color="@color/colorPrimary"
+                        app:riv_mutate_background="false"
+                        app:riv_oval="true"
+                        android:layout_margin = "10dp"/>
+
+                    <TextView
+                        android:id="@+id/feat_title1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bob's bikes"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#757575"
+                        android:paddingBottom="2dp"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:id="@+id/feat_title1.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="W 47th Street"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#424242"
+                        android:paddingBottom="10dp"
+                        android:textSize="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/feat_lin2"
+                    android:padding="5dp"
+                    android:layout_toRightOf="@+id/feat_lin1"
+                    android:orientation="vertical" >
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/feat2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/shop4"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        app:riv_corner_radius="6dip"
+                        app:riv_border_width="0dip"
+                        app:riv_border_color="@color/colorPrimary"
+                        app:riv_mutate_background="false"
+                        app:riv_oval="true"
+                        android:layout_margin = "10dp"/>
+
+                    <TextView
+                        android:id="@+id/feat_title2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Henna Chevy"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#757575"
+                        android:paddingBottom="2dp"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:id="@+id/feat_title2.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="8805 Interstate 35"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#424242"
+                        android:paddingBottom="10dp"
+                        android:textSize="12dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/feat_lin3"
+                    android:padding="5dp"
+                    android:layout_toRightOf="@+id/feat_lin2"
+                    android:orientation="vertical" >
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/feat3"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/shop5"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        app:riv_corner_radius="6dip"
+                        app:riv_border_width="0dip"
+                        app:riv_border_color="@color/colorPrimary"
+                        app:riv_mutate_background="false"
+                        app:riv_oval="true"
+                        android:layout_margin = "10dp"/>
+
+                    <TextView
+                        android:id="@+id/feat_title3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Uchiko"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#757575"
+                        android:paddingBottom="2dp"
+                        android:textSize="14dp"/>
+                    <TextView
+                        android:id="@+id/feat_title3.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4200 N Lamar Blvd"
+                        android:gravity="center"
+                        android:layout_below="@id/feat1"
+                        android:textColor="#424242"
+                        android:paddingBottom="10dp"
+                        android:textSize="12dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cardList"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topFrame"/>
+
+</RelativeLayout>

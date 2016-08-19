@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:tileMode="repeat"
+    >
+    <item>
+        <shape>
+            <solid android:color="#fff" />
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="top" android:src="@drawable/splash_bg">
+        </bitmap>
+    </item>
+</layer-list>
