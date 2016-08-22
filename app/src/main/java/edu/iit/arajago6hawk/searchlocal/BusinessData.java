@@ -7,6 +7,15 @@ import android.os.Parcelable;
  * Created by rasuishere on 2/12/16.
  */
 public class BusinessData implements Parcelable{
+
+    /**
+     * This class defines the object that we will be using
+     * to handle business data. Implements Parcelable to 
+     * facilitate data sharing. Parcelable is an Android specific 
+     * interface where we implement the serialization ourselves.
+     * TODO Migrate the app's data source from local to cloud so
+     * that we can make our app get data from API with minimal changes.
+     */
     private String name = "";
     private String category = "";
     private String desc = "";

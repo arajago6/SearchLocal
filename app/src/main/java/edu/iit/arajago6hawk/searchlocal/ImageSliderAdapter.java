@@ -15,6 +15,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class ImageSliderAdapter extends PagerAdapter implements ViewPager.OnPageChangeListener {
+    /**
+     * This class defines the image slider that is seen on MainActivity. 
+     * TODO Have to investigate why ImageViews in MainActivity flicker when
+     * slider page changes. Also to investigate why hiding TextViews on page
+     * change is not smooth sometimes. Hardware acceleration did not help.
+     * Maybe some out-of-memory issue. 
+     */
     Context mContext;
 
     ImageSliderAdapter(Context context) {
@@ -60,6 +67,10 @@ public class ImageSliderAdapter extends PagerAdapter implements ViewPager.OnPage
 
     @Override
     public void onPageSelected(int current) {
+	/**
+	* When page changes, check if the page index is 0 or 3. If yes,
+	* make the "Hello <user>" text and entice text visible. If not, hide them.
+	*/ 
         Log.d("Slider",Integer.toString(current));
         if (current==0||current==3){
             MainActivity.salutation.setVisibility(View.VISIBLE);

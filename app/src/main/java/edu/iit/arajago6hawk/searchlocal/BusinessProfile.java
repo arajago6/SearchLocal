@@ -14,6 +14,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class BusinessProfile extends FragmentActivity implements OnMapReadyCallback {
 
+    /**
+     * This activity should display all data that we have on the selected 
+     * business.
+     * TODO Create UI elements to hold data. Pass BusinessData object via Intent
+     * and set the data to UI in OnCreate. 
+     */
     private GoogleMap mMap;
 
     @Override
@@ -38,12 +44,13 @@ public class BusinessProfile extends FragmentActivity implements OnMapReadyCallb
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+	// Shows location of test business Clown Dog Bikes when map is ready.
         mMap = googleMap;
         LatLng cdb = new LatLng(30.291859,-97.735252);
         Marker m = mMap.addMarker(new MarkerOptions().position(cdb).title("Clown Dog Bikes"));
         m.showInfoWindow();
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(cdb)      // Sets the center of the map to Mountain View
+                .target(cdb)      // Sets the center of the map to Clown Dog Bikes
                 .zoom(12)                   // Sets the zoom
                 .bearing(90)                // Sets the orientation of the camera to east
                 .tilt(30)                   // Sets the tilt of the camera to 30 degrees

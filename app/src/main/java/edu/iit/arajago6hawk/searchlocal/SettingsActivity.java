@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
+     * TODO Add more controls as per wireframes, finish and test incomplete controls.
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */

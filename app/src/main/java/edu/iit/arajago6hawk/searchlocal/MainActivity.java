@@ -57,6 +57,17 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Home Page. Shows image slider and a panel with featured businesses.
+     * TODO Should allow search using input text field. Nearby businesses button should 
+     * query user's current location, get the city using Google's Reverse Geocoding API
+     * filter records based on city, then find distance to each business in city 
+     * and then give him businesses that are within a threshold, paginated. Phew. 
+     * Sounds like fun tho.
+     * BUG User logout does not remove profile picture. On initial triage, it looks like
+     * Android is not updating drawers frequently to ensure UI smoothness. Oh snap. Have to resolve.
+     */
+
     private ImageView userProfilePic;
     private NavigationView navigationView;
     private View headerView;
@@ -69,7 +80,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView recList;
     private Boolean isSearchActive = false;
     public static TextView salutation, entice;
-    public static final double ERad = 6372.8; // In kilometers
+    public static final double ERad = 6372.8; // Radius of earth in kilometers
     LocationManager mLocationManager;
     Location location = null;
     ArrayList<BusinessData> businessDataList = new ArrayList<BusinessData>();
@@ -99,6 +110,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         bDB = new DbMain(this);
         if(bDB.getBusinessCount()==0) {
+	    // Add test businesses to DB on app installation
             bDB.insertBusiness("Bob's Bikes", "Automotive / Recreational", "The best bikes in the city!",
                     "W 47th street", "Austin", "3129374808", "www.ownlocal.com", "www.facebook.com/OwnLocal",
                     30.291859, -97.735252, "shop3", "HCNews");
@@ -110,6 +122,7 @@ public class MainActivity extends AppCompatActivity
                     30.3108075, -97.810003, "shop5", "HCNews");
         }
 
+	// Bind UI elements to variables
         salutation = (TextView) findViewById(R.id.salutation);
         entice = (TextView) findViewById(R.id.entice);
         EditText editText = (EditText) findViewById(R.id.editText2);
@@ -132,12 +145,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+	// Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        updateNavHeader(LoginScreen.userName,LoginScreen.userEmail);
 
+	// Image slider
         mViewPager = (AutoScrollViewPager) findViewById(R.id.imgSlider);
         ImageSliderAdapter adapterView = new ImageSliderAdapter(MainActivity.this);
         mViewPager.setAdapter(adapterView);
@@ -145,9 +161,11 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setCycle(false);
         mViewPager.setInterval(4000);
         mViewPager.setOnPageChangeListener(adapterView);
-        updateNavHeader(LoginScreen.userName,LoginScreen.userEmail);
+
+	// Get user location
         location = getLastKnownLocation();
 
+	// Button listener
         final Button gobtn = (Button) findViewById(R.id.go_button);
         gobtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -170,6 +188,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    // Get facebook profile pic
     private class getProfilePic extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -192,6 +211,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    // Update navigation drawer header on login and log out
     public void updateNavHeader(String name, String email){
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -259,7 +279,7 @@ public class MainActivity extends AppCompatActivity
                     if (exit) {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     } else {
                         String cbMsg = "Press Back again to Exit.";
@@ -326,7 +346,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
         } else if (id == R.id.nav_business) {
             Intent intent = new Intent(getBaseContext(), BusinessActivity.class);
             startActivity(intent);
@@ -356,6 +375,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    // Calculates distance between two lat longs.
     public static double haversine(double lat1, double lon1, double lat2, double lon2) {
         double havRes=0.0;
         try {
@@ -374,6 +394,7 @@ public class MainActivity extends AppCompatActivity
         return havRes;
     }
 
+    // Routine to get user location.
     private Location getLastKnownLocation() {
         mLocationManager = (LocationManager)getApplicationContext().getSystemService(LOCATION_SERVICE);
         List<String> providers = mLocationManager.getProviders(true);
@@ -396,6 +417,7 @@ public class MainActivity extends AppCompatActivity
         return bestLocation;
     }
 
+    // Set business data pulled from local DB to the list of cards.
     public class BusinessAdapter extends RecyclerView.Adapter<BusinessAdapter.BusinessViewHolder> {
 
         private ArrayList<BusinessData> businessDataList;

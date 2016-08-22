@@ -53,6 +53,15 @@ import static com.facebook.GraphRequest.TAG;
 import static com.facebook.internal.CallbackManagerImpl.RequestCodeOffset.Login;
 
 public class LoginScreen extends Activity {
+
+    /**
+     * Takes care of all access actions.
+     * TODO Add Google SignOn. Also, currently Facebook login requests user name, id, email
+     * and profile pic every time app starts. We could use SharedPreferences and save
+     * those to device. Last time I tried SharedPreference, app startup time increased. 
+     * Weird. Have to look into it.
+     */
+
     private Button loginButton;
     private CallbackManager callbackManager;
     private GoogleApiClient mGoogleApiClient;
@@ -145,7 +154,7 @@ public class LoginScreen extends Activity {
                 if (exit) {
                     Intent intent = new Intent(Intent.ACTION_MAIN);
                     intent.addCategory(Intent.CATEGORY_HOME);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 } else {
                     String cbMsg = "Press Back again to Exit.";

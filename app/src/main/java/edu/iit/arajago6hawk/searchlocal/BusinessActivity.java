@@ -26,6 +26,7 @@ import com.facebook.login.LoginManager;
 public class BusinessActivity extends AppCompatActivity {
 
     /**
+     * This activity shows businesses. Filters are applied by swiping tabs.
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
      * {@link FragmentPagerAdapter} derivative, which will keep every
@@ -88,17 +89,15 @@ public class BusinessActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_access) {
             if (LoginScreen.newAccessToken != null) {
+		// User is logged in. Clear LoginManager Instance and launch LoginScreen
                 LoginManager.getInstance().logOut();
                 LoginScreen.newAccessToken = null;
-                //MainActivity.userName.setText("SearchLocal");
-                //MainActivity.userEmail.setText("ownlocal.com");
-                //MainActivity.userProfilePic.setImageBitmap(BitmapFactory.decodeResource(getApplicationContext().getResources(),
-                //        R.drawable.circle_icon));
                 Intent intent = new Intent(getBaseContext(), LoginScreen.class);
                 startActivity(intent);
                 return true;
             }
             else{
+		// User is not logged in. Simply launch LoginScreen
                 Intent intent = new Intent(getBaseContext(), LoginScreen.class);
                 startActivity(intent);
                 return true;

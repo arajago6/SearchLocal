@@ -15,6 +15,12 @@ import android.text.Html;
 import android.text.Spanned;
 
 public class DbMain extends SQLiteOpenHelper {
+		
+    /**
+     * Local database that stores test data.
+     * TODO Migrate the app's data source from local to cloud so
+     * that we can make our app get data from API with minimal changes.
+     */
 
     public static final String DB_NAME = "sl.db";
 
@@ -25,7 +31,7 @@ public class DbMain extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // TODO Auto-generated method stub
+        // Creates tables for businesses and ads when app is installed.
         try {
             db.execSQL(
                     "create table business " +
@@ -54,7 +60,7 @@ public class DbMain extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
+        // Updates database schema on device when needed. 
         try {
             db.execSQL("DROP TABLE IF EXISTS business");
             db.execSQL("DROP TABLE IF EXISTS ads");
